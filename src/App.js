@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Button, Icon, Label } from 'semantic-ui-react';
 import './App.css';
+import { Layout } from './Layout/Layout/Layout';
+import { Route, Switch } from 'react-router-dom';
+import Students from './container/Students/Students';
+import Groups from './container/Groups/Groups';
+import Teachers from './container/Teachers/Teachers';
+import Payments from './container/Payments/Payments';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <Layout />
+        <Switch>
+          <Route path={'/students'} exact component={Students} />
+          <Route path={'/groups'} component={Groups} />
+          <Route path={'/teachers'} component={Teachers} />
+          <Route path={'/payments'} component={Payments} />
+        </Switch>
       </div>
     );
   }
