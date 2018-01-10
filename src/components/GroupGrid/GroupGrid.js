@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Header } from 'semantic-ui-react';
 import PersonSegment from './PersonSegment/PersonSegment';
 
-let GroupGrid = () => {
+const GroupGrid = () => {
   let state = {
     studenst: [
       {
@@ -18,21 +18,24 @@ let GroupGrid = () => {
     ]
   };
 
-  return (
-    <Grid columns={3}>
-      {state.studenst.map(s => {
-        return (
-          <Grid.Column key={s.id}>
-            <Header as="h2">{s.name}</Header>
+  return <Grid columns={3}>{GridColumns(state)}</Grid>;
+};
 
-            {s.members.map(m => {
-              return <PersonSegment key={m.id} name={m.name} surname={m.surname} />;
-            })}
-          </Grid.Column>
-        );
-      })}
-    </Grid>
-  );
+const GridColumns = state => {
+  return state.studenst.map(student => {
+    return (
+      <Grid.Column key={student.id}>
+        <Header as="h2">{student.name}</Header>
+        {RenderStudents(student)}
+      </Grid.Column>
+    );
+  });
+};
+
+const RenderStudents = student => {
+  return student.members.map(m => {
+    return <PersonSegment key={m.id} name={m.name} surname={m.surname} />;
+  });
 };
 
 export default GroupGrid;

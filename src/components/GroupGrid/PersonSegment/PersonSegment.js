@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Segment, Container } from 'semantic-ui-react';
+import { Segment, Container } from 'semantic-ui-react';
 import PersonDropdown from '../PersonDropdown/PersonDropdown';
 
 let PersonSegment = props => {
@@ -8,7 +8,6 @@ let PersonSegment = props => {
       <Container textAlign="left">
         {props.name} {props.surname}
       </Container>
-
       <Container textAlign="right">
         <PersonDropdown />
       </Container>

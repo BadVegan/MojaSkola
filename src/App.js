@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button, Icon, Label } from 'semantic-ui-react';
 import './App.css';
 import { Layout } from './Layout/Layout/Layout';
 import { Route, Switch } from 'react-router-dom';
