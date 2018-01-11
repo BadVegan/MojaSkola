@@ -6,10 +6,10 @@ let PersonSegment = props => {
   return (
     <Segment style={{ display: 'flex' }}>
       <Container textAlign="left">
-        {props.name} {props.surname}
+        {props.student.name} {props.student.surname}
       </Container>
       <Container textAlign="right">
-        <PersonDropdown />
+        <PersonDropdown student={props.student} />
       </Container>
     </Segment>
   );

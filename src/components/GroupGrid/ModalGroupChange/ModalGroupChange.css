@@ -1,0 +1,5 @@
+.ui.modal > .content,
+.modalContetn {
+  display: flex;
+  justify-content: center;
+}

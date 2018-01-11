@@ -32,9 +32,9 @@ const GridColumns = state => {
   });
 };
 
-const RenderStudents = student => {
-  return student.members.map(m => {
-    return <PersonSegment key={m.id} name={m.name} surname={m.surname} />;
+const RenderStudents = students => {
+  return students.members.map(student => {
+    return <PersonSegment key={student.id} student={student} />;
   });
 };
 

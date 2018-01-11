@@ -32,7 +32,7 @@ class DropdownExampleDropdown extends Component {
           </Dropdown.Menu>
         </Dropdown>
 
-        <ModalWindow show={this.state.isOpen} onClose={this.toggleModal} />
+        <ModalWindow show={this.state.isOpen} onClose={this.toggleModal} student={this.props.student} />
       </div>
     );
   }
