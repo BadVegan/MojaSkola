@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GroupGrid from 'components/GroupGrid/GroupGrid';
+import GroupGrid from './../../components/GroupGrid/GroupGrid';
 import { Container } from 'semantic-ui-react';
 
 export default class Groups extends Component {

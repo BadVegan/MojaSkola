@@ -1,41 +1,42 @@
 import React from 'react';
-import { Grid, Header } from 'semantic-ui-react';
+import {Grid, Header} from 'semantic-ui-react';
 import PersonSegment from './PersonSegment/PersonSegment';
+import {connect} from 'react-redux';
 
-const GroupGrid = () => {
-  let state = {
-    studenst: [
-      {
-        id: 1,
-        name: 'GrupaA',
-        members: [{ id: 1, name: 'Dawid', surname: 'Ryczko' }]
-      },
-      {
-        id: 2,
-        name: 'GrupaB',
-        members: [{ id: 1, name: 'Jan', surname: 'Kowalski' }]
-      }
-    ]
-  };
+const GroupGrid = (props) => {
 
-  return <Grid columns={3}>{GridColumns(state)}</Grid>;
+    return <Grid columns={3}>
+             {GridColumns(props.listGroup)}
+        </Grid>;
 };
 
-const GridColumns = state => {
-  return state.studenst.map(student => {
-    return (
-      <Grid.Column key={student.id}>
-        <Header as="h2">{student.name}</Header>
-        {RenderStudents(student)}
-      </Grid.Column>
-    );
-  });
+const GridColumns = listGroup => {
+    return listGroup.map(group => {
+        return (
+            <Grid.Column key={group.id}>
+                <Header as="h2">{group.name}</Header>
+                {RenderStudents(group.students)}
+            </Grid.Column>
+        );
+    });
 };
 
 const RenderStudents = students => {
-  return students.members.map(student => {
-    return <PersonSegment key={student.id} student={student} />;
-  });
+    return students.map(student => {
+        return <PersonSegment key={student.id} student={student}/>;
+    });
 };
 
-export default GroupGrid;
+//Redux
+const mapStateToProps = state => {
+    return {
+        listGroup: state.groups.listGroup
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onChangeGroup: () => dispatch({type: 'CHANGE_GROPU'})
+    };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(GroupGrid);

@@ -3,6 +3,7 @@ import { Button, Modal, Dropdown } from 'semantic-ui-react';
 import './ModalGroupChange.css';
 
 class ModalGroupChange extends Component {
+
   state = {
     groups: [
       { key: 1, value: 1, text: 'Grupa A' },
@@ -12,11 +13,14 @@ class ModalGroupChange extends Component {
       { key: 5, value: 5, text: 'Grupa E' },
       { key: 6, value: 6, text: 'Grupa F' },
       { key: 7, value: 7, text: 'Grupa G' }
-    ]
+    ],
+      selectedGroup: null
   };
 
   handleComboSelection = (event, obj) => {
-    console.log(obj.value);
+    this.setState({
+        selectedGroup: obj.value
+    })
   };
 
   render() {
@@ -34,7 +38,7 @@ class ModalGroupChange extends Component {
           <Button negative onClick={this.props.onClose}>
             Anuluj
           </Button>
-          <Button positive icon="checkmark" labelPosition="right" content="Zapisz" />
+          <Button positive icon="checkmark" labelPosition="right" content="Zapisz" onClick={() => this.props.onChangeGroup(this.state.selectedGroup)}/>
         </Modal.Actions>
       </Modal>
     );

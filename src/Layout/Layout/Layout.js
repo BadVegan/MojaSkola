@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavBar } from 'Layout/NavBar/NavBar';
+import { NavBar } from './../NavBar/NavBar';
 
 export class Layout extends Component {
   render() {
