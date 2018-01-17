@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Modal, Dropdown } from 'semantic-ui-react';
 import './ModalGroupChange.css';
+import { connect } from 'react-redux';
+import { changeGroup } from './../../../store/actions/actionsGroup';
 
 class ModalGroupChange extends Component {
-
   state = {
     groups: [
       { key: 1, value: 1, text: 'Grupa A' },
@@ -14,13 +15,13 @@ class ModalGroupChange extends Component {
       { key: 6, value: 6, text: 'Grupa F' },
       { key: 7, value: 7, text: 'Grupa G' }
     ],
-      selectedGroup: null
+    selectedGroup: null
   };
 
   handleComboSelection = (event, obj) => {
     this.setState({
-        selectedGroup: obj.value
-    })
+      selectedGroup: obj.value
+    });
   };
 
   render() {
@@ -38,10 +39,22 @@ class ModalGroupChange extends Component {
           <Button negative onClick={this.props.onClose}>
             Anuluj
           </Button>
-          <Button positive icon="checkmark" labelPosition="right" content="Zapisz" onClick={() => this.props.onChangeGroup(this.state.selectedGroup)}/>
+          <Button
+            positive
+            icon="checkmark"
+            labelPosition="right"
+            content="Zapisz"
+            onClick={() => this.props.onChangeGroup(this.state.selectedGroup, this.props.student.id)}
+          />
         </Modal.Actions>
       </Modal>
     );
   }
 }
-export default ModalGroupChange;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onChangeGroup: (idGroup, idStudent) => dispatch(changeGroup(idGroup, idStudent))
+  };
+};
+export default connect(null, mapDispatchToProps)(ModalGroupChange);

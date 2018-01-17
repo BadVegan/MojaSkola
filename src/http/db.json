@@ -1,0 +1,31 @@
+{
+  "listGroup": [
+    {
+      "id": 1,
+      "name": "GrupaA",
+      "students": [
+        { "id": 1, "name": "Jhon", "surname": "Done" },
+        { "id": 2, "name": "Ben", "surname": "Green" },
+        { "id": 3, "name": "Sara", "surname": "Smara" }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "GrupaB",
+      "students": [
+        { "id": 4, "name": "Szymon", "surname": "Biały" },
+        { "id": 5, "name": "Anna", "surname": "Nowa" },
+        { "id": 6, "name": "Magdalena", "surname": "Ucząca" }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "GrupaC",
+      "students": [
+        { "id": 7, "name": "Janek", "surname": "Dzbanek" },
+        { "id": 8, "name": "Adam", "surname": "Kowalski" },
+        { "id": 9, "name": "Grzegorz", "surname": "Brzoza" }
+      ]
+    }
+  ]
+}
