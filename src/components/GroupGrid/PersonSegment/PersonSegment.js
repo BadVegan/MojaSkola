@@ -4,14 +4,14 @@ import PersonDropdown from '../PersonDropdown/PersonDropdown';
 
 let PersonSegment = props => {
   return (
-    <Segment style={{ display: 'flex' }}>
-      <Container textAlign="left">
+    <Segment.Group horizontal>
+      <Segment textAlign='left' style={{width: "90%"}}>
         {props.student.name} {props.student.surname}
-      </Container>
-      <Container textAlign="right">
+      </Segment>
+      <Segment textAlign='right'>
         <PersonDropdown student={props.student} />
-      </Container>
-    </Segment>
+      </Segment>
+    </Segment.Group>
   );
 };
 

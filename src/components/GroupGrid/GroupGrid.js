@@ -1,36 +1,59 @@
-import React from 'react';
-import { Grid, Header } from 'semantic-ui-react';
+import React, {Component} from 'react';
+import {Grid, Header, Segment, Divider} from 'semantic-ui-react';
 import PersonSegment from './PersonSegment/PersonSegment';
-import { connect } from 'react-redux';
-import * as http from './../../http/http';
+import {connect} from 'react-redux';
+import {fetchGroupsHttp} from "../../store/actions/actionsGroup";
+import AddGroup from "./AddGroup/AddGroup";
 
-const GroupGrid = props => {
-  return <Grid columns={3}>{GridColumns(props.listGroup)}</Grid>;
+class GroupGrid extends Component {
+
+    componentDidMount() {
+        console.log('[GroupGrid- componentDidMount]')
+        this.props.fetchGroups();
+    }
+
+    render() {
+        return (
+            <Segment padded >
+                <AddGroup/>
+                <Divider horizontal>Zarządzaj grupami</Divider>
+                <Grid columns={3} stackable>{GridColumns(this.props.listGroup)}</Grid>
+            </Segment>
+        );
+    }
+
+
 };
 
 const GridColumns = listGroup => {
-  http.getGroups();
-  return listGroup.map(group => {
-    return (
-      <Grid.Column key={group.id}>
-        <Header as="h2">{group.name}</Header>
-        {RenderStudents(group.students)}
-      </Grid.Column>
-    );
-  });
+
+    return listGroup.map(group => {
+        return (
+            <Grid.Column key={group.id}>
+                <Header as="h2">{group.name}</Header>
+                {RenderStudents(group.students)}
+            </Grid.Column>
+        );
+    });
 };
 
 const RenderStudents = students => {
-  return students.map(student => {
-    return <PersonSegment key={student.id} student={student} />;
-  });
+    return students.map(student => {
+        return <PersonSegment key={student.id} student={student}/>;
+    });
 };
 
 //Redux
 const mapStateToProps = state => {
-  return {
-    listGroup: state.groups.listGroup
-  };
+    return {
+        listGroup: state.groups
+    };
 };
 
-export default connect(mapStateToProps)(GroupGrid);
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchGroups: () => dispatch(fetchGroupsHttp())
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(GroupGrid);

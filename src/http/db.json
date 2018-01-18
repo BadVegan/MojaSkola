@@ -2,7 +2,7 @@
   "listGroup": [
     {
       "id": 1,
-      "name": "GrupaA",
+      "name": "Grupa A",
       "students": [
         { "id": 1, "name": "Jhon", "surname": "Done" },
         { "id": 2, "name": "Ben", "surname": "Green" },
@@ -11,7 +11,7 @@
     },
     {
       "id": 2,
-      "name": "GrupaB",
+      "name": "Grupa B",
       "students": [
         { "id": 4, "name": "Szymon", "surname": "Biały" },
         { "id": 5, "name": "Anna", "surname": "Nowa" },
@@ -20,12 +20,17 @@
     },
     {
       "id": 3,
-      "name": "GrupaC",
+      "name": "Grupa C",
       "students": [
         { "id": 7, "name": "Janek", "surname": "Dzbanek" },
         { "id": 8, "name": "Adam", "surname": "Kowalski" },
         { "id": 9, "name": "Grzegorz", "surname": "Brzoza" }
       ]
+    },
+    {
+      "id": 4,
+      "name": "Grupa D",
+      "students": []
     }
   ]
 }
