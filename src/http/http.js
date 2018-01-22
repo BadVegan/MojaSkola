@@ -1,9 +1,22 @@
 import axios from 'axios';
 
+const URL = 'http://localhost:3333/groups';
+
 export function getGroups() {
     return axios
-        .get('http://localhost:3004/listGroup');
+        .get(URL);
 }
+
+export function addGroup(name) {
+    const group = { name: name };
+    return axios.post(URL, group);
+}
+
+export function deleteGroup(id) {
+    axios.delete(URL + id);
+}
+
+
 
 export function changeGroup(idGroup, idStudent) {
 
@@ -35,14 +48,11 @@ export function changeGroup(idGroup, idStudent) {
 export function fetchGroupsName() {
     return axios
         .get('http://localhost:3004/listGroup').then(res => {
-            return res.data.map(group=>{
-                return { key: group.id, value: group.id, text: group.name}
+            return res.data.map(group => {
+                return { key: group.id, value: group.id, text: group.name }
             })
         })
 }
 
 
-export function addGroup(name){
-    console.log(name)
-    return fetchGroupsName();
-}
+

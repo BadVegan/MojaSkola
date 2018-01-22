@@ -12,9 +12,10 @@ const fetchGroups = (data) => {
 
 export const fetchGroupsHttp = () => {
     return dispatch => {
-        http.getGroups().then(res => {
-            dispatch(fetchGroups(res.data));
-        })
+        http.getGroups()
+            .then(res => {
+                dispatch(fetchGroups(res.data.result));
+            }).catch(err => console.log(err));
     }
 };
 
@@ -28,9 +29,9 @@ const fetchGroupsName = (data) => {
 export const fetchGroupsNameHttp = () => {
     return dispatch => {
         http.fetchGroupsName().then(res => {
-            dispatch(fetchGroupsName(res))
-        })
-    }
+            dispatch(fetchGroupsName(res));
+        });
+    };
 };
 
 const changeGroup = (data) => {
@@ -48,18 +49,36 @@ export const changeGroupHttp = (idGroup, idStudent) => {
     };
 };
 
-const addGroup = (groups) => {
+// add group
+const addGroup = (newGroup) => {
     return {
         type: actionType.ADD_GROUP,
-        groupsName: groups
-    }
+        group: newGroup
+    };
 };
 
 export const addGroupHttp = (name) => {
     return dispatch => {
-        http.addGroup(name).then(groups => {
-            dispatch(addGroup(groups));
-        })
-    }
-
+        http.addGroup(name).then(response => {
+            dispatch(addGroup(response.data.result));
+        }).catch(error => console.log(error));
+    };
 };
+// 
+
+// delete group
+const deleteGroup = (id) => {
+    return {
+        type: actionType.DELETE_GROUP,
+        idGroup: id 
+    };
+};
+
+export const deleteGroupHttp = (id) => {
+    return dispatch => {
+        http.deleteGroup(id).then(response => {
+            dispatch(deleteGroup(response.data.result));
+        });
+    };
+};
+// 

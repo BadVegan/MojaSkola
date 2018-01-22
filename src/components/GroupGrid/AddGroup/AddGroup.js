@@ -1,36 +1,45 @@
-import React, {Component} from 'react';
-import {Button, Input, Segment} from 'semantic-ui-react';
-import {connect} from 'react-redux';
-import {addGroupHttp} from "../../../store/actions/actionsGroup";
+import React, { Component } from 'react';
+import { Button, Input, Segment } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { addGroupHttp } from "../../../store/actions/actionsGroup";
 
 class AddGroup extends Component {
 
     state = {
-        newGroup: null
+        newGroup: ''
     };
 
-    addGroup = (event, data) => {
+    nameListlener = (event, data) => {
         this.setState({
             newGroup: data.value
         })
     };
 
+    addNewGroup = () => {
+        this.props.addNewGroup(this.state.newGroup);
+        this.setState({
+            newGroup: ''
+        });
+    }
+
     validateName = () => {
-        return this.state.newGroup === null || this.state.newGroup.trim() === ''
+        return this.state.newGroup === null || this.state.newGroup.trim() === '';
     };
 
     render() {
 
         let disableButton = this.validateName();
+        let valueText = this.state.newGroup;
         return (
             <Segment basic>
                 <Input
                     icon='group'
                     iconPosition='left'
-                    placeholder='Nazwa grupy'
-                    onChange={this.addGroup.bind(this)}
+                    placeholder='Nowa grupa'
+                    onChange={this.nameListlener.bind(this)}
+                    value={valueText}
                 />
-                <Button positive disabled={disableButton} onClick={() => this.props.addNewGroup(this.state.newGroup)}>Dodaj</Button>
+                <Button positive disabled={disableButton} onClick={this.addNewGroup.bind(this)}>Dodaj</Button>
             </Segment>
         )
     }

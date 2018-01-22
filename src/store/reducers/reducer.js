@@ -7,12 +7,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     if (action.type === actionType.CHANGE_GROUP) {
-        console.log(action.groups)
         return {
             ...state,
             groups: [...action.groups]
         }
     } else if (action.type === actionType.FETCH_GROUPS) {
+        console.log('FETCH_GROUPS', action.groups)
         return {
             ...state,
             groups: [...action.groups]
@@ -22,10 +22,13 @@ const reducer = (state = initialState, action) => {
             ...state,
             groupsName: [...action.groupsName]
         }
-    } else if (action.type === actionType.ADD_GROUP){
+    } else if (action.type === actionType.ADD_GROUP) {
+            let newArr = [...state.groups]
+            newArr.push(action.group)
+
         return {
             ...state,
-            groupsName: [...action.groupsName]
+            groups: newArr
         }
     }
     return state;
