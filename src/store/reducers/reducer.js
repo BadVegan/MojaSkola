@@ -23,14 +23,20 @@ const reducer = (state = initialState, action) => {
             groupsName: [...action.groupsName]
         }
     } else if (action.type === actionType.ADD_GROUP) {
-            let newArr = [...state.groups]
-            newArr.push(action.group)
-
+        let newArr = [...state.groups]
+        newArr.push(action.group)
+        return {
+            ...state,
+            groups: newArr
+        }
+    } else if (action.type === actionType.DELETE_GROUP) {
+        let newArr = state.groups.filter(e => e._id !== action.group._id);
         return {
             ...state,
             groups: newArr
         }
     }
+
     return state;
 };
 

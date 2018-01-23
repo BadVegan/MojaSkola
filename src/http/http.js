@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL = 'http://localhost:3333/groups';
+const URL = 'http://localhost:3333/groups/';
 
 export function getGroups() {
     return axios
@@ -12,8 +12,8 @@ export function addGroup(name) {
     return axios.post(URL, group);
 }
 
-export function deleteGroup(id) {
-    axios.delete(URL + id);
+export function deleteGroup(groupId) {
+    return axios.delete(URL + groupId);
 }
 
 

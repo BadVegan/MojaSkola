@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Container } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
 import PersonDropdown from '../PersonDropdown/PersonDropdown';
 
 let PersonSegment = props => {

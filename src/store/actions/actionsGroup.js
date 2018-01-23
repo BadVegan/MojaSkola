@@ -67,14 +67,15 @@ export const addGroupHttp = (name) => {
 // 
 
 // delete group
-const deleteGroup = (id) => {
+const deleteGroup = (deletedGroup) => {
     return {
         type: actionType.DELETE_GROUP,
-        idGroup: id 
+        group: deletedGroup
     };
 };
 
 export const deleteGroupHttp = (id) => {
+    console.log('DELETE', id)
     return dispatch => {
         http.deleteGroup(id).then(response => {
             dispatch(deleteGroup(response.data.result));
