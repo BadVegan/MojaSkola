@@ -1,43 +1,49 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {deleteGroupHttp, fetchGroupsHttp} from "../../../store/actions/actionsGroup";
-import {Button, Header, Icon, Input, Segment, Grid} from "semantic-ui-react";
+import {deleteGroupHttp, fetchGroupsHttp, editGroupNameHttp} from "../../../store/actions/actionsGroup";
+import { Header, Grid} from "semantic-ui-react";
 import PersonSegment from "../PersonSegment/PersonSegment";
+import EditGroupName from "../EditGroupName/EditGroupName";
+import DeleteGroup from "../DeleteGroup/DeleteGroup";
 
 class GridColumn extends Component {
     state = {
-        idEditing: null
-    }
+        idEditing: null,
+        newName: ''
+    };
 
     componentDidMount() {
-        console.log('[GroupGrid- componentDidMount]')
         this.props.fetchGroups();
     }
 
     editGroup = (id) => {
-        console.log('do edycji', id)
         this.setState({
             idEditing: id
         });
-    }
-    RenderStudents = students => {
-        if (students) {
-            return students.map(student => {
-                return <PersonSegment key={student._id} student={student}/>;
+    };
+
+    onChangeName = (event, data) => {
+        this.setState({
+            newName: data.value
+        })
+    };
+
+    saveName = () => {
+        if (this.state.newName !== '') {
+            this.setState({
+                idEditing: null,
+                newName: ''
+            });
+            this.props.editName(this.state.idEditing, this.state.newName);
+        } else {
+            this.setState({
+                idEditing: null
             });
         }
 
     };
 
-    saveName = () => {
-        console.log('SAVE NAME')
-        this.setState({
-            idEditing: null
-        })
-    };
-
     cancelName = () => {
-        console.log('SCANCEL NAME')
         this.setState({
             idEditing: null
         })
@@ -47,39 +53,25 @@ class GridColumn extends Component {
 
         return (
             this.props.listGroup.map(group => {
-
-                let inputEditing = <Input value={group.name}>
-                    <input/>
-                    <Button positive circular icon='check' onClick={() => this.saveName(group._id)}/>
-                    <Button negative circular icon='cancel' onClick={() => this.cancelName(group._id)}/>
-                </Input>
-                let headers = <Header as="h3">{group.name}</Header>;
-
+                const disableDelete = group.students ? true : false;
+                const inputEditing = <EditGroupName group={group}
+                                                    onChangeName={this.onChangeName}
+                                                    saveName={this.saveName}
+                                                    cancelName={this.cancelName}/>;
+                const headers = <Grid.Column width={10}><Header color='green'
+                                                                as="h3">{group.name}</Header></Grid.Column>;
 
                 return (<Grid.Column key={group._id}>
-                    <Segment.Group horizontal>
-                        <Segment textAlign='left' style={{width: "90%"}}>
-                            {group._id === this.state.idEditing ? inputEditing : headers}
-                        </Segment>
+                    <Grid columns='equal' verticalAlign={'middle'} textAlign={'center'}>
+                        {group._id === this.state.idEditing ? inputEditing : headers}
 
-                        {group._id === this.state.idEditing ?  null :
-                            <Segment.Group horizontal>
-                                <Segment textAlign='right'>
-                                    <Button icon basic>
-                                        <Icon name='edit' onClick={() => this.editGroup(group._id)}/>
-                                    </Button>
-                                </Segment>
+                        {group._id === this.state.idEditing ? null :
+                            <DeleteGroup groupId={group._id} disabledDelete={disableDelete} editGroup={this.editGroup}
+                                         deleteGroup={this.props.deleteGroup}/>}
+                    </Grid>
 
-                                <Segment textAlign='right'>
-                                    <Button icon basic>
-                                        <Icon name='delete' onClick={() => this.props.deleteGroup(group._id)}/>
-                                    </Button>
-                                </Segment>
-                            </Segment.Group>
-                            }
-
-                    </Segment.Group>
-                    {/*{RenderStudents(group.students)}*/}
+                    {group.students ? group.students.map(student => <PersonSegment key={student.id}
+                                                                                   student={student}/>) : null}
                 </Grid.Column>)
             })
         )
@@ -96,7 +88,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchGroups: () => dispatch(fetchGroupsHttp()),
-        deleteGroup: (id) => dispatch(deleteGroupHttp(id))
+        deleteGroup: (id) => dispatch(deleteGroupHttp(id)),
+        editName: (id, name) => dispatch(editGroupNameHttp(id, name))
     };
 };
 

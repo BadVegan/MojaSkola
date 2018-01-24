@@ -35,6 +35,17 @@ const reducer = (state = initialState, action) => {
             ...state,
             groups: newArr
         }
+    } else if (action.type === actionType.CHANGE_NAME) {
+        let newArr = [...state.groups];
+        newArr.find(e => {
+            if (e._id === action.group._id) {
+                e.name = action.group.name;
+            }
+        });
+        return {
+            ...state,
+            groups: newArr
+        }
     }
 
     return state;
