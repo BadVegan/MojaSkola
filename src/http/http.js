@@ -8,7 +8,7 @@ export function getGroups() {
 }
 
 export function addGroup(name) {
-    const group = { name: name };
+    const group = {name: name};
     return axios.post(URL, group);
 }
 
@@ -16,6 +16,9 @@ export function deleteGroup(groupId) {
     return axios.delete(URL + groupId);
 }
 
+export function editGroup(id, name) {
+    return axios.patch(URL + id, {name: name});
+}
 
 
 export function changeGroup(idGroup, idStudent) {
@@ -49,7 +52,7 @@ export function fetchGroupsName() {
     return axios
         .get('http://localhost:3004/listGroup').then(res => {
             return res.data.map(group => {
-                return { key: group.id, value: group.id, text: group.name }
+                return {key: group.id, value: group.id, text: group.name}
             })
         })
 }

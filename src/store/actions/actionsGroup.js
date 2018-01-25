@@ -75,11 +75,27 @@ const deleteGroup = (deletedGroup) => {
 };
 
 export const deleteGroupHttp = (id) => {
-    console.log('DELETE', id)
+    console.log('DELETE', id);
     return dispatch => {
         http.deleteGroup(id).then(response => {
             dispatch(deleteGroup(response.data.result));
         });
     };
 };
-// 
+//edit group name
+
+const editGroupName = (changedGroup) => {
+    return {
+        type: actionType.CHANGE_NAME,
+        group: changedGroup
+    };
+};
+
+export const editGroupNameHttp = (id, name) => {
+    console.log('EDIT_HTTP', id, name);
+    return dispatch => {
+        http.editGroup(id, name).then(response => {
+            dispatch(editGroupName(response.data.result))
+        });
+    }
+};

@@ -6,37 +6,37 @@ import { addGroupHttp } from "../../../store/actions/actionsGroup";
 class AddGroup extends Component {
 
     state = {
-        newGroup: ''
+        newGroupName: ''
     };
 
-    nameListlener = (event, data) => {
+    nameListener = (event, data) => {
         this.setState({
-            newGroup: data.value
+            newGroupName: data.value
         })
     };
 
     addNewGroup = () => {
-        this.props.addNewGroup(this.state.newGroup);
+        this.props.addNewGroup(this.state.newGroupName);
         this.setState({
-            newGroup: ''
+            newGroupName: ''
         });
-    }
+    };
 
     validateName = () => {
-        return this.state.newGroup === null || this.state.newGroup.trim() === '';
+        return this.state.newGroupName === null || this.state.newGroupName.trim() === '';
     };
 
     render() {
 
         let disableButton = this.validateName();
-        let valueText = this.state.newGroup;
+        let valueText = this.state.newGroupName;
         return (
             <Segment basic>
                 <Input
                     icon='group'
                     iconPosition='left'
                     placeholder='Nowa grupa'
-                    onChange={this.nameListlener.bind(this)}
+                    onChange={this.nameListener.bind(this)}
                     value={valueText}
                 />
                 <Button positive disabled={disableButton} onClick={this.addNewGroup.bind(this)}>Dodaj</Button>
