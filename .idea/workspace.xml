@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="04b702fd-44a1-401b-94a9-8f351dbeca8f" name="Default" comment="implementacja zakładki grupy">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/components/GroupGrid/GridColumn/GridColumn.js" />
+    <list default="true" id="04b702fd-44a1-401b-94a9-8f351dbeca8f" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/components/GroupGrid/GroupGrid.js" afterPath="$PROJECT_DIR$/src/components/GroupGrid/GroupGrid.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/GroupGrid/PersonSegment/PersonSegment.js" afterPath="$PROJECT_DIR$/src/components/GroupGrid/PersonSegment/PersonSegment.js" />
-      <change beforePath="$PROJECT_DIR$/src/http/http.js" afterPath="$PROJECT_DIR$/src/http/http.js" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/actionsGroup.js" afterPath="$PROJECT_DIR$/src/store/actions/actionsGroup.js" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/reducer.js" afterPath="$PROJECT_DIR$/src/store/reducers/reducer.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -257,12 +251,20 @@
       <workItem from="1516349594684" duration="21000" />
       <workItem from="1516349672293" duration="71000" />
       <workItem from="1516707535671" duration="1006000" />
-      <workItem from="1516708869009" duration="7723000" />
+      <workItem from="1516708869009" duration="7905000" />
     </task>
+    <task id="LOCAL-00001" summary="usuwanie, edycja grupy">
+      <created>1516718086980</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1516718086980</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42026000" />
+    <option name="totallyTimeSpent" value="42208000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -331,7 +333,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="implementacja zakładki grupy" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementacja zakładki grupy" />
+    <MESSAGE value="usuwanie, edycja grupy" />
+    <option name="LAST_COMMIT_MESSAGE" value="usuwanie, edycja grupy" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
