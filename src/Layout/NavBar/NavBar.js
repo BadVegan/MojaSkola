@@ -19,7 +19,7 @@ export class NavBar extends Component {
 
     return (
       <nav>
-        <Menu stackable>
+        <Menu stackable >
           <NavLink to="/students">
             <Menu.Item name={STUDENTS} active={activeItem === STUDENTS} onClick={this.handleItemClick}>
               Uczniowie
